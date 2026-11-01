@@ -10,7 +10,8 @@
     "navigation": "Links e preferências",
     "expandMenu": "Expandir navegação",
     "collapseMenu": "Recolher navegação",
-    "downloadReports": "Baixar docs-reports (ZIP)"
+    "downloadReports": "Baixar docs-reports (ZIP)",
+    "previews": "Previews"
   },
   "languages": {
     "pt-BR": "Português",
@@ -52,5 +53,14 @@
     "message": "O documento solicitado não existe.",
     "action": "Voltar ao início",
     "actionDescription": "Voltar ao início da documentação"
+  },
+  "previews": {
+    "title": "Previews",
+    "description": "Ambientes de visualização dos serviços e das bibliotecas: galerias e Storybooks.",
+    "list": "Previews disponíveis",
+    "kind": {
+      "gallery": "Galeria",
+      "storybook": "Storybook"
+    }
   }
 }

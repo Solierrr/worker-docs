@@ -31,3 +31,11 @@ jobs:
 
       - name: Run linter
         run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check the previews list
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run previews:check

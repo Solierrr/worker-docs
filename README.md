@@ -2,6 +2,12 @@
 
 Portal público de documentação do Solaria, desenvolvido com React, Vite e @solaria.network/web-lib. Os documentos são JSON em `src/content/<documento>/<idioma>.json`, organizados por `src/content/manifest.json`, e os links do rodapé ficam em `src/content/footer.json`. A interface e os documentos estão disponíveis em português (pt-BR), inglês (en-US) e espanhol (es-ES). O idioma vem do cookie `solaria_language` ou do navegador, com pt-BR como padrão; os textos da interface ficam em `src/config/i18n/locales/<idioma>/docs.json`.
 
+## Previews
+
+A aba Previews (`/previews`, `/pt-BR/previews`, `/en-US/previews` e `/es-ES/previews`) lista os ambientes de preview (galerias e Storybooks) e abre cada um em `/previews/<repositório>/`. O Worker (`src/worker/`) serve o GitHub Pages por baixo desse caminho, só para os repositórios da lista, só em GET e HEAD e com os redirecionamentos mantidos dentro do portal. A última resposta boa de cada caminho fica guardada por 7 dias e é servida se o Pages falhar; sem cópia, o visitante vê uma página com o endereço direto.
+
+A lista em `src/content/previews.json` vem do `gallery.json` da raiz de cada repositório (`scripts/previews-repos.json`): `npm run previews:sync` lê a `main` de cada um pela CLI `gh` e `npm run previews:check` falha se a lista estiver desatualizada (roda no CI e todo dia no workflow `Previews Check`). Para incluir um preview, crie o `gallery.json` no repositório dele (nome igual ao do repositório, tipo `gallery` ou `storybook` e título e descrição nos três idiomas), acrescente o nome em `scripts/previews-repos.json` e rode o sync.
+
 ## Desenvolvimento
 
 ```sh
