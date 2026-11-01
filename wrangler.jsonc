@@ -2,9 +2,12 @@
   "name": "worker-docs",
   "compatibility_date": "2026-09-29",
   "workers_dev": false,
+  "main": "src/worker/index.ts",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/previews/*"]
   },
   "routes": [
     {

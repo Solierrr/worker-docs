@@ -1,0 +1,25 @@
+name: Previews Check
+
+# A lista de previews vem do gallery.json de cada repositório. Quando um deles muda, a lista daqui fica
+# desatualizada: esta verificação diária falha e avisa, até alguém rodar `npm run previews:sync`.
+on:
+  schedule:
+    - cron: "37 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  previews:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Check the previews list
+        run: node scripts/sync-previews.mjs --check

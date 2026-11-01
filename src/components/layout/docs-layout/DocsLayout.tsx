@@ -21,7 +21,9 @@ export default function DocsLayout() {
   useEffect(() => {
     document.documentElement.lang = i18n.language;
     const name = t("layout.title");
-    document.title = home ? name : `${documents[pathname.split("/")[2]]?.title ?? t("notFound.title")} | ${name}`;
+    const previews = /^(\/[a-z]{2}-[A-Z]{2})?\/previews\/?$/.test(pathname);
+    const title = previews ? t("previews.title") : (documents[pathname.split("/")[2]]?.title ?? t("notFound.title"));
+    document.title = home ? name : `${title} | ${name}`;
   }, [pathname, home, documents, i18n.language, t]);
 
   return (

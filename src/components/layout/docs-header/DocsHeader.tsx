@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconArrowLeft, IconDownload } from "@tabler/icons-react";
+import { IconArrowLeft, IconDownload, IconLayoutGrid } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { GitHubIcon, ToolbarAction } from "@solaria.network/web-lib";
 import { LanguageSwitcher } from "./DocsHeader.reusable";
@@ -30,6 +30,7 @@ export default function DocsHeader({ home, open, toggle }: DocsHeaderProps) {
       />
       </div>
       <div className="ml-auto flex items-center gap-1 sm:gap-2">
+        <Link to="/previews" aria-label={t("header.previews")} title={t("header.previews")} className={actionClass}><IconLayoutGrid size={20} stroke={1.75} aria-hidden="true" /></Link>
         <a href="https://github.com/Solierrr/web-docs" aria-label={t("header.github")} title="GitHub" target="_blank" rel="noopener noreferrer" className={actionClass}>
           <GitHubIcon size={20} />
         </a>

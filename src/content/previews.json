@@ -1,0 +1,72 @@
+[
+  {
+    "name": "api-email",
+    "kind": "gallery",
+    "title": {
+      "pt-BR": "Previews de e-mail",
+      "en-US": "Email previews",
+      "es-ES": "Vistas previas de correo"
+    },
+    "description": {
+      "pt-BR": "Os templates de e-mail do serviço nos três idiomas, em tela cheia e em celular.",
+      "en-US": "The service email templates in the three languages, on desktop and mobile.",
+      "es-ES": "Las plantillas de correo del servicio en los tres idiomas, en escritorio y móvil."
+    }
+  },
+  {
+    "name": "docs-reports",
+    "kind": "gallery",
+    "title": {
+      "pt-BR": "Previews de documentos",
+      "en-US": "Document previews",
+      "es-ES": "Vistas previas de documentos"
+    },
+    "description": {
+      "pt-BR": "Modelos de relatório, manual, perguntas frequentes e documento curto, e os documentos publicados.",
+      "en-US": "Report, manual, FAQ and short document templates, and the published documents.",
+      "es-ES": "Plantillas de informe, manual, preguntas frecuentes y documento breve, y los documentos publicados."
+    }
+  },
+  {
+    "name": "docs-warehouse",
+    "kind": "gallery",
+    "title": {
+      "pt-BR": "Previews da arquitetura",
+      "en-US": "Architecture previews",
+      "es-ES": "Vistas previas de la arquitectura"
+    },
+    "description": {
+      "pt-BR": "Diagramas da plataforma, organização dos repositórios e relação entre os serviços.",
+      "en-US": "Platform diagrams, repository organization and the relations between services.",
+      "es-ES": "Diagramas de la plataforma, organización de los repositorios y relación entre los servicios."
+    }
+  },
+  {
+    "name": "lib-web",
+    "kind": "storybook",
+    "title": {
+      "pt-BR": "Storybook da biblioteca de componentes",
+      "en-US": "Component library Storybook",
+      "es-ES": "Storybook de la biblioteca de componentes"
+    },
+    "description": {
+      "pt-BR": "Os componentes da biblioteca web compartilhada, com exemplos e controles.",
+      "en-US": "The components of the shared web library, with examples and controls.",
+      "es-ES": "Los componentes de la biblioteca web compartida, con ejemplos y controles."
+    }
+  },
+  {
+    "name": "web-app",
+    "kind": "storybook",
+    "title": {
+      "pt-BR": "Storybook do aplicativo web",
+      "en-US": "Web app Storybook",
+      "es-ES": "Storybook de la aplicación web"
+    },
+    "description": {
+      "pt-BR": "Componentes, páginas e fluxos do aplicativo web, com controles e testes de acessibilidade.",
+      "en-US": "Components, pages and flows of the web app, with controls and accessibility checks.",
+      "es-ES": "Componentes, páginas y flujos de la aplicación web, con controles y pruebas de accesibilidad."
+    }
+  }
+]

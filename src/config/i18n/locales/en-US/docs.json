@@ -10,7 +10,8 @@
     "navigation": "Links and preferences",
     "expandMenu": "Expand navigation",
     "collapseMenu": "Collapse navigation",
-    "downloadReports": "Download docs-reports (ZIP)"
+    "downloadReports": "Download docs-reports (ZIP)",
+    "previews": "Previews"
   },
   "languages": {
     "pt-BR": "Português",
@@ -52,5 +53,14 @@
     "message": "The requested document does not exist.",
     "action": "Back to home",
     "actionDescription": "Back to the documentation home"
+  },
+  "previews": {
+    "title": "Previews",
+    "description": "Preview environments of the services and libraries: galleries and Storybooks.",
+    "list": "Available previews",
+    "kind": {
+      "gallery": "Gallery",
+      "storybook": "Storybook"
+    }
   }
 }
