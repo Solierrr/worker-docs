@@ -1,6 +1,6 @@
 // Junta o gallery.json de cada repositório na lista que a aba Previews mostra (src/content/previews.json).
 const locales = ["pt-BR", "en-US", "es-ES"];
-const kinds = ["gallery", "storybook"];
+const kinds = new Set(["gallery", "storybook"]);
 
 function localized(value, field, repo) {
   if (!value || typeof value !== "object") throw new Error(`${repo}: ${field} precisa ter um texto por idioma`);
@@ -15,8 +15,8 @@ function localized(value, field, repo) {
 export function mergePreviews(byRepo) {
   const seen = new Set();
   return Object.entries(byRepo).map(([repo, file]) => {
-    if (!file || file.name !== repo) throw new Error(`${repo}: o campo "name" precisa ser o nome do repositório`);
-    if (!kinds.includes(file.kind)) throw new Error(`${repo}: "kind" precisa ser gallery ou storybook`);
+    if (file?.name !== repo) throw new Error(`${repo}: o campo "name" precisa ser o nome do repositório`);
+    if (!kinds.has(file.kind)) throw new Error(`${repo}: "kind" precisa ser gallery ou storybook`);
     if (seen.has(file.name)) throw new Error(`${repo}: nome repetido`);
     seen.add(file.name);
     return {

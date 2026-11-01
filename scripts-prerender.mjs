@@ -33,8 +33,11 @@ await writeFile(new URL('dist/404.html',root),'<!doctype html><html lang="pt-BR"
 
 // Aba Previews: /previews e uma cópia por idioma (/pt-BR/previews...), que é o endereço que os previews usam no cabeçalho.
 const previews = JSON.parse(await readFile(new URL('src/content/previews.json', root), 'utf8'));
-const previewsMain = `<main><nav><a href="/">Início</a></nav><h1>Previews</h1><ul>${previews.map(item => `<li><a href="/previews/${escape(item.name)}/">${escape(item.title['pt-BR'])}</a>: ${escape(item.description['pt-BR'])}</li>`).join('')}</ul></main>`;
-const previewsPage = html.replace('<title>Solaria Docs</title>', '<title>Previews | Solaria Docs</title>').replace('<div id="root"></div>', `<div id="root">${previewsMain}</div>`);
-for (const path of ['previews', 'pt-BR/previews', 'en-US/previews', 'es-ES/previews']) {
-  const dir = new URL(`dist/${path}/`, root); await mkdir(dir, { recursive: true }); await writeFile(new URL('index.html', dir), previewsPage);
-}
+const previewItem = item => '<li><a href="/previews/' + escape(item.name) + '/">' + escape(item.title['pt-BR']) + '</a>: ' + escape(item.description['pt-BR']) + '</li>';
+const previewsMain = '<main><nav><a href="/">Início</a></nav><h1>Previews</h1><ul>' + previews.map(previewItem).join('') + '</ul></main>';
+const previewsPage = html.replace('<title>Solaria Docs</title>', '<title>Previews | Solaria Docs</title>').replace('<div id="root"></div>', '<div id="root">' + previewsMain + '</div>');
+await Promise.all(['previews', 'pt-BR/previews', 'en-US/previews', 'es-ES/previews'].map(async path => {
+  const dir = new URL('dist/' + path + '/', root);
+  await mkdir(dir, { recursive: true });
+  await writeFile(new URL('index.html', dir), previewsPage);
+}));

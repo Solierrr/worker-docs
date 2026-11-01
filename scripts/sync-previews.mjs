@@ -1,8 +1,7 @@
 // Atualiza src/content/previews.json a partir do gallery.json da raiz de cada repositório de preview.
 //   node scripts/sync-previews.mjs          grava a lista
 //   node scripts/sync-previews.mjs --check  falha se a lista estiver desatualizada
-// Os arquivos vêm da branch main de cada repositório, pela CLI do GitHub (gh).
-import { execFileSync } from "node:child_process";
+// Os arquivos vêm da branch main de cada repositório (todos públicos), pelo endereço raw do GitHub.
 import { readFileSync, writeFileSync } from "node:fs";
 import { mergePreviews } from "./previews-merge.mjs";
 
@@ -10,15 +9,13 @@ const org = "Solierrr";
 const listPath = new URL("../src/content/previews.json", import.meta.url);
 const repos = JSON.parse(readFileSync(new URL("./previews-repos.json", import.meta.url), "utf8"));
 
-const byRepo = {};
-for (const repo of repos) {
-  const raw = execFileSync(
-    "gh",
-    ["api", "-H", "Accept: application/vnd.github.raw", `repos/${org}/${repo}/contents/gallery.json?ref=main`],
-    { encoding: "utf8" },
-  );
-  byRepo[repo] = JSON.parse(raw);
+async function load(repo) {
+  const response = await fetch(`https://raw.githubusercontent.com/${org}/${repo}/main/gallery.json`);
+  if (!response.ok) throw new Error(`${repo}: gallery.json respondeu ${response.status}`);
+  return [repo, await response.json()];
 }
+
+const byRepo = Object.fromEntries(await Promise.all(repos.map(load)));
 
 const next = `${JSON.stringify(mergePreviews(byRepo), null, 2)}\n`;
 if (process.argv.includes("--check")) {

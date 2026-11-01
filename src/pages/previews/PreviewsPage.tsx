@@ -30,6 +30,8 @@ export default function PreviewsPage() {
           {previews.map((preview) => {
             const Glyph = preview.kind === "storybook" ? IconBook2 : IconLayoutGrid;
             const title = preview.title[locale];
+            const kind = t(`previews.kind.${preview.kind}`);
+            const detail = `${kind}: ${preview.description[locale]}`;
             return (
               <GroupAction
                 key={preview.name}
@@ -37,7 +39,7 @@ export default function PreviewsPage() {
                 reloadDocument
                 label={title}
                 content={title}
-                detail={`${t(`previews.kind.${preview.kind}`)}: ${preview.description[locale]}`}
+                detail={detail}
                 glyph={<Glyph size={20} stroke={1.75} aria-hidden="true" />}
               />
             );
