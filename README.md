@@ -1,26 +1,36 @@
-# Solaria Docs
+<p align="center">
+  <img src="./assets/readme/banners/react.png" alt="React" width="100%">
+</p>
 
-Portal público de documentação do Solaria, desenvolvido com React, Vite e @solaria.network/web-lib. Os documentos são JSON em `src/content/<documento>/<idioma>.json`, organizados por `src/content/manifest.json`, e os links do rodapé ficam em `src/content/footer.json`. A interface e os documentos estão disponíveis em português (pt-BR), inglês (en-US) e espanhol (es-ES). O idioma vem do cookie `solaria_language` ou do navegador, com pt-BR como padrão; os textos da interface ficam em `src/config/i18n/locales/<idioma>/docs.json`.
+<p align="center">
+  <img src="./assets/readme/stacks/typescript.png" width="100" hspace="8" alt="TypeScript" title="TypeScript">
+  <img src="./assets/readme/stacks/vite.png" width="100" hspace="8" alt="Vite" title="Vite">
+  <img src="./assets/readme/stacks/cloudflare.png" width="100" hspace="8" alt="Cloudflare" title="Cloudflare">
+</p>
 
-## Previews
+# Portal público de documentos
 
-A aba Previews (`/previews`, `/pt-BR/previews`, `/en-US/previews` e `/es-ES/previews`) lista os ambientes de preview (galerias e Storybooks) e abre cada um em `/previews/<repositório>/`. O Worker (`src/worker/`) serve o GitHub Pages por baixo desse caminho, só para os repositórios da lista, só em GET e HEAD e com os redirecionamentos mantidos dentro do portal. A última resposta boa de cada caminho fica guardada por 7 dias e é servida se o Pages falhar; sem cópia, o visitante vê uma página com o endereço direto.
+[![License](https://img.shields.io/github/license/Solierrr/worker-docs)](https://github.com/Solierrr/worker-docs/blob/main/LICENSE)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Solierrr/worker-docs)](https://github.com/Solierrr/worker-docs/commits)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Solierrr/worker-docs)](https://github.com/Solierrr/worker-docs/pulls)
+[![Release](https://img.shields.io/github/v/release/Solierrr/worker-docs)](https://github.com/Solierrr/worker-docs/releases)
 
-A lista em `src/content/previews.json` vem do `gallery.json` da raiz de cada repositório (`scripts/previews-repos.json`): `npm run previews:sync` lê a `main` de cada um pelo endereço raw do GitHub (os repositórios são públicos) e `npm run previews:check` falha se a lista estiver desatualizada (roda no CI e todo dia no workflow `Previews Check`). Para incluir um preview, crie o `gallery.json` no repositório dele (nome igual ao do repositório, tipo `gallery` ou `storybook` e título e descrição nos três idiomas), acrescente o nome em `scripts/previews-repos.json` e rode o sync.
+O portal reúne documentos públicos de privacidade, termos, cookies e integração de calendário. Visitantes encontram o conteúdo organizado por assunto e idioma, com navegação lateral e sumário da página. O repositório permite manter esses textos junto da interface e revisar as alterações pelo histórico de publicação.
 
-## Desenvolvimento
+A aplicação React carrega documentos em JSON e prepara páginas HTML durante o build. A hospedagem usa recursos estáticos do Cloudflare Workers com domínio próprio, sem depender do cluster da plataforma. A interface oferece português, inglês e espanhol e usa o conteúdo padrão quando uma tradução não está disponível.
 
-```sh
-npm ci
-npm run dev
-npm run typecheck
-npm run lint
-npm run build
-npm run check
-```
+## Aprofunde-se no Projeto!
 
-O build gera páginas HTML para as rotas conhecidas e uma página 404. O Worker usa Cloudflare Workers Static Assets e domínio próprio, sem dependência do cluster. Este repositório se chamava `web-docs`; o script na Cloudflare tem o mesmo nome do repositório (`worker-docs`), definido em `wrangler.jsonc`. A publicação é o workflow `Deploy` (manual), que roda o build e o `wrangler deploy` com os secrets `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` do repositório; o token (`workers-deploy`) é criado pelo Terraform no `infra-platform`. Se a integração GitHub da Cloudflare ainda estiver ligada no painel, ela publica em paralelo; desligue-a para deixar o workflow como único caminho. `npm run deploy` continua valendo para uma publicação local.
+- [OVERVIEW.md](./docs/OVERVIEW.md), finalidade e regras de produto.
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md), componentes, dados e integrações.
+- [RUNNING.md](./docs/RUNNING.md), preparação e execução local.
+- [DEPLOY.md](./docs/DEPLOY.md), ambientes e publicação.
+- [STATUS.md](./docs/STATUS.md), limites observados.
+- [Fluxos](./flows/), etapas e casos de erro do repositório.
+- [PENDENCIAS.md](./PENDENCIAS.md), questões para revisão.
 
-Os documentos legais e de integração contêm avisos de conteúdo pendente: não são políticas aprovadas nem documentação suficiente para verificação OAuth. PDFs podem ser colocados manualmente em `pdfs/` junto ao documento, mas download ainda não foi implementado. As traduções em inglês e espanhol são rascunhos e precisam de revisão antes da publicação.
+## Contribuindo
 
-A dependência web-lib é consumida diretamente pelo tarball em vendor/, gerado do pacote 0.5.0 com correção local no Canvas para não apagar o desenho em notificações de resize sem mudança de tamanho. A correção vive no repositório web-lib; após publicação, substituir o tarball pela versão corrigida do npm. O grid branco usa o Canvas original com composição CSS, sem outra implementação do pattern.
+- [CONTRIBUTING.md](https://github.com/Solierrr/.github/blob/main/.github/CONTRIBUTING.md), convenções de contribuição.
+- [CODE_OF_CONDUCT.md](https://github.com/Solierrr/.github/blob/main/CODE_OF_CONDUCT.md), código de conduta.
+- [SECURITY.md](https://github.com/Solierrr/.github/blob/main/SECURITY.md), relato de vulnerabilidades.
