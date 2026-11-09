@@ -17,11 +17,11 @@
   "dependencies": {
     "@solaria.network/web-lib": "file:vendor/solaria.network-web-lib-0.5.0.tgz",
     "@tabler/icons-react": "^3.49.0",
-    "i18next": "^26.4.2",
-    "lucide-react": "^1.49.0",
+    "i18next": "^26.7.1",
+    "lucide-react": "^1.66.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-i18next": "^17.0.15",
+    "react-i18next": "^17.1.11",
     "react-icons": "^5.7.0",
     "react-router-dom": "^7.18.4",
     "react-speech-recognition": "^4.0.1"
@@ -31,15 +31,15 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "eslint": "^10.11.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "eslint": "^10.14.0",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.12.0",
+    "globals": "^17.14.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",
     "vite": "^8.3.0",
-    "vitest": "4.1.11",
-    "wrangler": "^4.0.0"
+    "vitest": "4.1.12",
+    "wrangler": "^4.156.1"
   }
 }
